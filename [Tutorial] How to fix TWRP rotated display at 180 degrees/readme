@@ -1,0 +1,38 @@
+STEPS:
+Unpack your TWRP recovery by dragging the recovery.img onto unpackimg.bat within the Android image kitchen tool's folder
+Copy the downloaded libminutwrp.so file into the folder /ramdisk/sbin and if requested, overwrite the existing file
+Repack the TWRP by double clicking repackimg.bat
+Flash, test and confirm if the new TWRP (image-new.img) has it's displayed fixed
+
+
+There's no guarantees that this works for all devices / chipset type, you'd have to test it yourself to find out. So far it's worked on two different mediatek chipset types i.e MT6580 & MT6737
+This might work for other devices with TWRP rotated at 270 degrees, but you'll need to find a fixed TWRP, unpack it and copy the libminutwrp.so from within /ramdisk/sbin folder and try it on your TWRP
+
+
+
+-----
+
+in this video tutorial, i'm going to be showing how to fix twrp recovery rotated at 180 degrees
+now i have here a phone and you can see the hardware buttons down here but you can see twrp's buttons up and everything is inverted
+now notice that normally install should be here and reboot should be here, if i click install i'll get reboot, which means that the display has been rotated to 180 degrees
+now to fix this we are going to need a tool for unpacking the recovery
+you can download android image kitchen then you'll your twrp recovery and you'll need this file from another device with this same problem but has a twrp that has been fixed
+so basically you need a phone that has it's twrp fixed to display correctly. so in my case i already have the file
+we are going to be sharing this file, the link will be in the description
+so lets begin, we'll simply drag and drop recovery to unpack
+now locate ramdisk, sbin, then copy this file into sbin folder, of course we'll have to replace the existing file
+this is the name of the file just incase
+then we go back and we'll repack
+and we'll have our new image, so i'm going to quickly flash this to the phone
+let me reboot to bootloader, which means here then bootloader should be nope..
+well, this device has it's hardware button stuck
+i'm currently trying to boot to fastboot mode, so i'll quickly launch powershell window
+nope, not yet, we need to wait for the phone to boot properly
+okay, now i connect it again
+so my device is in fastboot mode but you can't see it because the screen is blurred
+i see what happened
+okay then i reboot to recovery mode
+well, there you go, you can see that the screen is fixed, the display rather
+now from here you can see when i click install, i get install and everything is how it should normally be
+so guys that's how you fix twrp rotated screen, i don't know if this works on every device but you test and tell us
+ensure to subscribe and like the video, thanks for watching

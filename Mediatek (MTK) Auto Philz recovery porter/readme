@@ -1,0 +1,20 @@
+
+Requirements
+Stock recovery.img (extracted from the firmware or by dumping the phone's ROM using Miracle Box, SP Flash tool etc )
+Download MTK Auto Philz recovery porter by Team Hovatek from the link at the bottom of this post
+Windows PC
+
+
+STEPS:
+Extract the MTK Auto Philz recovery porter zip
+Copy the stock recovery.img into the stock folder
+Double-click Auto Philz Recovery Porter.exe
+Tap Enter to confirm that you've copied your stock recovery.img into the stock folder
+Enter the option for your Android version (5 for Lollipop, 6 for Marshmallow & 7 for Nougat) and tap Enter
+Type Y or N (depending on whether or not you have an external SD card in your phone) then tap Enter
+Wait while our tool ports the Philz recovery
+You'll find your ported Philz recovery in the output folder.
+Flash the recovery image to your device
+
+
+

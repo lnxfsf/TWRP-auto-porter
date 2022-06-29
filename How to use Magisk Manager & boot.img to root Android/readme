@@ -1,0 +1,93 @@
+
+In this tutorial, we are going to show how one can root an android device by patching the stock boot.img using Magisk Manager. This comes in particularly handy for those on Lollipop and above where one-click-root apks like Kingroot don't work and would therefore require a custom recovery to root.
+With this method, you won't be needing a one-click-root apk or custom recovery  (e.g Philz, CWM, TWRP etc) to root your device.
+
+
+Requirements
+Stock boot.img for your phone model (its best its for your Build Number / Variant ) . You can extract from the stock rom / firmware of your device (you may check our collection at https://www.hovatek.com/forum/forum-89.html ) OR backup from your device using a hardware box e.g Miracle Box, CM2, Nck Box Pro etc
+Download Latest Magisk Manager apk @ https://github.com/topjohnwu/Magisk/releases
+Active internet connection on your Android device
+
+---------
+Steps on how to root an Android device using Magisk Manager and patched boot.img
+
+
+
+Step 1: Patching the stock boot.img
+
+Install MagiskManager apk on your android device
+Copy the stock boot.img of your device to your phone's internal storage or SD card
+Launch Magisk Manager app
+If you're not using the latest version, you'll have to update the app first before proceeding
+If you intend to patch recovery.img then manually tick "Recovery Mode" in Advanced Settings
+Select Install > Install > Select and Patch a File >
+Navigate to the location of the stock boot.img you copied earlier on, then Select it. Note that if you are using a samsung device then you should select the firmware of your device in .tar format instead of boot.img
+Magisk Manager should begin downloading the magisk zip file used for patching
+Once download is complete, MagiskManager will automatically patch the file and store it under SDcard/Download/magisk_patched.img[.tar]
+
+
+Step 2: Flashing the patched boot.img
+
+You have a variety of options to flash the patched boot.img depending on your chipset (e.g Mediatek MTK, Spreadtrum SPD, Qualcomm QLM etc ), the resources you have and your skills. Note that some flashing methods might require you to rename the file to boot.img
+For those using MTK devices and have the specific scatter file for their device, you can flash the patched boot.img using SP flash tool or Miracle Box
+For those using SPD devices and have the PAC file for their device, you can flash the patched boot.img using Research download tool by replacing the stock boot.img with your patched boot.img
+For those using Qualcomm devices, you can flash patched boot.img using Miracle box custom flasher; see https://www.hovatek.com/forum/thread-26213.html
+For those using Samsung devices and wish to flash patched boot.img.tar using Odin; see https://www.hovatek.com/forum/thread-519.html
+Generally speaking, you could also use Fastboot  to flash the patched_boot.img or boot.img (if you've renamed then the command must reflect the file name) as outlined below
+
+
+
+How to Flash patched_boot.img using Fastboot
+
+Setup adb and fastboot on your PC using the guide @ https://www.hovatek.com/forum/thread-588.html 
+Unlock the phone's Bootloader (if its not unlocked) using https://www.hovatek.com/forum/thread-19578.html
+Re-enable USB debugging on the phone using https://www.hovatek.com/forum/thread-10109.html
+Connect the phone to the PC via USB cord
+Boot into fastboot mode using the guide @ https://www.hovatek.com/forum/thread-19503.html
+Flash the patched_boot and reboot by typing in the commands below into adb CMD prompt window and hitting Enter after each line
+
+
+Code:
+fastboot devices
+fastboot flash boot patched_boot.img
+fastboot reboot
+
+Your command history should look something like
+
+
+
+Verify root using Root Checker
+
+
+-----------
+
+In this video tutorial, I'll be explaining how to root an Android device using magisk manager and a boot.img. Now you need to get the boot.img for your phone either from the firmware which you downloaded online or from a rom which you backed up or extracted from your phone. You can backup your phone using a variety of tools depending on your chipset but anyway you either get the boot.img from the firmware or extracted from your phone.
+
+Now, once you have your boot.img, you need to copy to your phone storage because you're going to be working on that on the device. Now I have my magisk installed and I'm also going to check my root status to show that the phone is not rooted okay? so I'm starting from the very beginning, from scratch. So you can see I do not have root access on this phone so I will be rooting the phone using magisk and my boot.img. Now, its very important you get a boot.img for your variant. You know, when it comes to Android, there are number of variants so you just can't use any boot.img on your device. You need to get one that is for your variant or close to your build number even for your build number okay?
+
+So once you have that in place, you're going to launch magisk manager. On this screen, you just select NO THANKS. Now, if you're using a Samsung device you might want to change your settings. You come under Patch Boot Output Format. Now, you'll want to change yours to .img.tar that is for Samsung users who want to flash their patched boot.img using Odin okay? but I want to use in .img format so I'll just leave it as it is ok? Samsung users just take note of that alright? So now at this screen, you're going to tap Install then you tap Install again.
+
+Now you're going to select Patch Boot Image File. Now, I'm going to locate my stock boot.img, I saved that to the Hovatek folder on my internal storage. Okay, I have it here. I'm going to select it now so I'm going to allow. So now you'll notice that magisk is going to download the zip file and then begin patching alright? So I'll just wait a couple of seconds for okay it's almost done, I think I can just slide off so you can see. So now what is happening right now is that magisk is now patching the boot image which I just loaded and then it's going to produce the patched boot.img for me, its going to save it to the phone storage for me alright?
+
+So once that is done, I'll just head over to flashing the patched boot.img to my device okay? packing boot image. You might be wondering why I have adb opened here. Its because I want to flash using fastboot. Alright! so it says patched boot image is placed here so I'm going to actually verify that by launching my file manager. Internal storage. I'm looking for Magisk Manager. As you can see, I have my patched boot.img, its 11.43 MB. So now, I'm going to copy this file to my PC from which I'm going to flash. Now, at this point, you now need to flash your boot.img .There's a lot of ways you can flash your boot image depending on your kind of chipset and what you have. You might decide to flash using a tool, maybe like Odin, SP Flash tool, Research Download tool, Miracle box, depending on what you have at the moment or for most devices, you can flash using fastboot.
+
+Now, I'm going to be demonstrating how to flash using fastboot okay because that's quite general for devices alright? So first off, I need to copy this patched boot image to my device and that would take a couple of seconds so let me just do that quickly. Alright so I've copied the patched boot.img to my adb folder and that is what I have over here as you can see so now I'm going to be flashing this using fastboot. Don't forget, you can flash your boot image using a variety of methods, it depends on your chipset but I'm using fastboot because that's actually quite general alright? So now, before you can use fastboot on your device, you need to have unlocked your bootloader.
+
+We have a guide on how to unlock your bootloader. Just check our forum, search for how to unlock the bootloader of an Android device, we have a guide on that. Follow the guide unlock your bootloader. Don't forget that unlocking your bootloader wipes your data so ensure you have your stuff backed up alright? Now, once your bootloader is unlocked , you're going to boot up the device again and setup your ADB. So I'm going to be testing ADB connection to my phone by typing adb devices .So you can see I have a detection. So now, I'm going to be booting my phone into fastboot which is bootloader so I'm going to type in adb reboot-bootloader .
+
+Now, you're going to see that the screen is going to go off. The Android emulator is closed already since I don't have adb connection to my device anymore. so now you will be able to see my screen because it's no longer an ADB mood so I can't broadcast the screen to you but my phone is in fastboot mode so I'm going to test connection in fastboot by typing fastboot devices . Okay so I have a connection in fastboot. So now I'm going to be flashing the patched. Now, some tools require you to rename your patched boot, that's patched_boot to just boot like when you're flashing with SP flash tool, Research Download tool and some other tools, you need to actually rename your boot but I don't have to rename it in fastboot.
+
+I just have to make sure I type the name correctly. So to flash the boot in fastboot, don't forget you need to have your bootloader unlocked so if your bootloader is not unlocked, make sure you unlock it. Now, just to verify my bootloader status, I will type fastboot getvar unlocked My bootloader is unlocked so now I'm going to flash the boot image by typing fastboot flash boot patched_boot.img which is the file name so whatever you name it, make sure you type that correctly. Alright! so that is done. Now, I'm going to reboot the device to the normal Android screen so fastboot reboot
+
+Alright! so my phone is restarting. I'll just give it a couple of seconds to come up. Once it boots up now. I'm going to be testing root status using the root checker application Alright! booted up and should be coming up any moment Alright! So I'm going to come back to my root checker and check my root status so I'm going to be verifying root. Alright! so I can see I already have a sign of root access. By an app asking for root permission, that means I have root on my device
+
+Alright! so my device is rooted That's how to root an Android device using magisk manager and stock boot.img
+
+
+
+--------------
+
+znaci, samo ti treba za fde ai mod, a to je u ovaj folder takodje, ali mozda radi i onaj preko recovery-a, a mozda i ne, al moze i ovaj ipak...
+
+
+

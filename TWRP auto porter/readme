@@ -1,0 +1,30 @@
+
+Requirements
+Stock recovery.img (extracted from the firmware or by dumping the phone's ROM using Miracle Box, SP Flash tool etc )
+Download MTK Auto TWRP recovery porter by Team Hovatek from the link at the bottom of this post
+Windows PC
+
+
+
+
+
+STEPS:
+
+Extract the MTK Auto TWRP recovery porter compressed file
+Copy the stock recovery.img into the stock-recovery folder; if you have recovery-sign.img then ensure to rename it to recovery.img
+Double-click Auto TWRP Recovery Porter.exe
+Tap Enter to confirm that you've copied your stock recovery.img into the stock-recovery folder
+Enter the option for your Android version (5 for Lollipop, 6 for Marshmallow, 7 for Nougat, 8 and 8.1 for Oreo & 8.1g for Oreo-Go) and tap Enter
+Wait while our tool ports the TWRP recovery
+You'll find your ported TWRP recovery in the output folder.
+Flash the recovery image to your device
+
+
+
+
+
+
+If the ported TWRP doesn't work (ie the phone simply boots back to homescreen) , then ensure you're using stock recovery from your current rom build also try both versions of the TWRP porting tool; one might work for you where the other one fails
+
+
+

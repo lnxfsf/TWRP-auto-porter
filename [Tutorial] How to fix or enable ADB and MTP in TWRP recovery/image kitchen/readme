@@ -1,0 +1,58 @@
+
+Android Image Kitchen -- Unpack/Repack Kernel+Recovery Images, and Edit the ramdisk.
+
+Windows ports of the necessary Linux utils for Android image (kernel/recovery) mod work:
+
+mkbootimg, unpackbootimg: https://github.com/osm0sis/mkbootimg
+pxa-mkbootimg, pxa-unpackbootimg: https://github.com/osm0sis/pxa-mkbootimg
+elftool: https://github.com/osm0sis/elftool
+unpackelf: https://github.com/osm0sis/unpackelf
+mboot: https://github.com/osm0sis/mboot
+dumpimage, mkimage: https://www.denx.de/wiki/U-Boot/WebHome
+mkmtkhdr: https://github.com/osm0sis/mkmtkhdr
+loki_tool: https://github.com/djrbliss/loki
+futility: https://github.com/osm0sis/futility
+boot_signer.jar (requires JRE 8+): https://forum.xda-developers.com/an...signing-boot-images-android-verified-t3600606
+blobpack, blobunpack: https://github.com/AndroidRoot/BlobTools
+dhtbsign: https://github.com/osm0sis/dhtbsign
+rkcrc: https://github.com/rockchip-linux/rkflashtool
+sony_dump: https://forum.xda-developers.com/crossdevice-dev/sony/tool-unpack-format-sony-kernel-image-t3530077
+bzip2, cat, chmod, cpio, cut, dd, file, find, gzip, hexdump, lzop, printf, tail, truncate, xz;
+cygbz2-1, cygcrypto-1.1, cyggcc_s-1, cygiconv-2, cygintl-8, cyglzma-5, cyglzo2-2, cygmagic-1, cygncursesw-10.dll, cygstdc++-6.dll, cygssl-1.1, cygwin1, cygz: https://cygwin.com/
+lz4: https://lz4.github.io/lz4/
+sudo: https://github.com/mattn/sudo
+magic: https://www.darwinsys.com/file/
+
+See the Mobile Edition (AIK-mobile) initial release notes for the specifics on the native Android version.
+Likewise for the Linux/macOS Edition (AIK-Linux) initial release notes.
+
+My original intent was to have this package dependency-free, but as you can see, I did have to include Cygwin. Initially just for mkbootimg since the huaixzk standalone version wouldn't work (it wasn't loading the kernel as binary, thanks trevd); then I discovered that using the GNUWin32 cpio to unpack somehow didn't play nice with repacking the ramdisk in a usable state, so at that point I decided I might as well go Cygwin across the board. As it is, I've included the latest Cygwin-dependent executables and required libraries from their repos and built my own custom Cygwin image and ramdisk utilities built from the latest sources.
+
+Originally only for Google Pixel/Nexus/AOSP standard boot.img files, built-in support has now expanded to Google Pixel/AOSP vendor_boot.img files, Android Verified Boot (AVBv1)/ChromeOS/SignBlob signed boot.img files, Barnes & Noble Nook "Green Loader" signed boot.img files, Samsung/Spreadtrum DHTB header signed boot.img files, the Samsung/Marvell PXA1088/1908 board boot.img variant (AOSP-PXA), Loki patched boot.img files, amonet patched boot.img files, Sony SIN signed/packaged kernel.elf extraction, Sony ELF kernel.elf files, Intel OSIP Android image files, DENX U-Boot uImage files, Rockchip KRNL signed ramdisk image files, MTK headers for kernel/ramdisk, and LG Bump/Samsung SEAndroid footers for boot.img.
+
+The main advantage here is you don't need Cygwin shell or PERL scripts. Other guides exist but none of them are universal for target device, compression and/or developed for Windows, Android ARM/x86/MIPS + ARM64/x86_64/MIPS64, and now macOS. With this universality in mind I've automated the whole process with batch/shell scripts.
+
+My development work on my many projects comes out of my free time, so if you enjoy this project or anything else I've done on xda, please consider sponsoring my ongoing work using my GitHub Sponsors profile. For a one-time donation you can hit the donate link from my profile. Thank you for your support!
+
+
+Instructions
+
+1) Unzip.
+2) Either use the command-line "unpackimg <image-filename.img>", or simply drag-and-drop the image. This will split the image and unpack the ramdisk to a subdirectory.
+3) Alter the ramdisk as you like.
+4) The repackimg script requires no input and simply recombines the previously split kernel with the newly packed modified ramdisk using all the original image information (which was also split and saved).
+5) The cleanup script resets the folder to its initial state, removing the split_img+ramdisk directories and any new packed ramdisk or image files.
+
+There are a few optional, advanced command-line arguments for repackimg: "--original", which will cause it to repack using the original split ramdisk instead of repacking, this is useful for testing or trimming dumps; "--origsize", which will cause it to repack then pad it to the size of the original image, this is useful for repacking dumps to then be fastboot flashed; "--level" with 1-9 and possibly 0 allows changing the compression level used to repack to more closely match the original; "--avbkey" with (optionally path and) a keyname allows changing from the default AOSP verity key; "--forceelf" to attempt to make an older unpacked Sony ELF file repack as an ELF.
+
+All scripts also allow unpacking/repacking with the current directory instead of the AIK directory if "--local" is the first command-line argument.
+
+Supported ramdisk compression formats in the *-ramdiskcomp file are gzip, lzop, lzma, xz, bzip2, lz4, lz4-l (for lz4 legacy), cpio (for uncompressed), and empty (for no ramdisk).
+
+Usage is similar for the Android and Linux versions, again, just review the release notes for them.
+
+Hopefully this is some help to someone. It's been extremely useful for me in my messing around with kernel ramdisks, which is why I created it in the first place.
+
+Enjoy!
+Questions, comments and feedback welcome.
+
