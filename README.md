@@ -1,5 +1,5 @@
 # TWRP-auto-porter
-Automatically port TWRP on Mediated device
+Automatically port TWRP on any (and unsupported) Mediated device
 
 
 Creator is Hovatek.com 
